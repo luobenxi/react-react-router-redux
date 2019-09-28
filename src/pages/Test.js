@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getUserList, getUserListAsync } from '../redux/action/user'
+import { getUserList, getUserListAsync } from '../redux/action/user';
+import MyList from "../components/MyList";
 
 @connect(
     state => ({
@@ -15,8 +16,8 @@ import { getUserList, getUserListAsync } from '../redux/action/user'
 
 class Test extends React.Component {
 
-    componentDidMount() {
-        let data = [
+    state = {
+        items: [
             {
                 id: 1,
                 name: '罗本习'
@@ -25,7 +26,12 @@ class Test extends React.Component {
                 id: 2,
                 name: '哈哈哈'
             }
-        ];
+        ],
+        name: '哈哈哈'
+    };
+
+    componentDidMount() {
+        let data = this.state.items;
         this.props.getUserList(data);
 
         let data2 = Array.from(data);
@@ -39,6 +45,9 @@ class Test extends React.Component {
     render() {
         return (
             <div>
+                <MyList name={this.state.name}>
+                    <div>children</div>
+                </MyList>
                 <p>React全家桶Demo（React+React-Router+Redux）</p>
                 <div>同步</div>
                 <ul>
