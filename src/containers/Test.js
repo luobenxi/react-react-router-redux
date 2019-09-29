@@ -1,16 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getUserList, getUserListAsync } from '../redux/actions/user';
+import { getUserList, getUserListAsync, getUserListAsyncMock } from '../redux/actions/user';
 import MyList from "../components/MyList";
 
 @connect(
     state => ({
         userList: state.user.userList,
         userListAsync: state.user.userListAsync,
+        userListAsyncMock: state.user.userListAsyncMock,
     }),
     {
         getUserList,
         getUserListAsync,
+        getUserListAsyncMock,
     }
 )
 
@@ -36,7 +38,10 @@ class Test extends React.Component {
         let data = this.state.items;
         this.props.getUserList(data);
 
-        this.getPageUserList();
+        this.getPageUserList().then(res => {
+            console.log(res);
+            // this.props.getUserListAsyncMock();
+        });
     }
 
     getPageUserList() {
@@ -45,7 +50,7 @@ class Test extends React.Component {
             current_page: this.state.current_page,
             name: this.state.name
         };
-        this.props.getUserListAsync(params);
+        return this.props.getUserListAsync(params);
     }
 
     changeText(e) {
@@ -71,7 +76,7 @@ class Test extends React.Component {
                     }
                 </ul>
                 <br />
-                <div>异步（Ajax）</div>
+                <div>异步本地接口（Ajax）</div>
                 <div>
                     当前页
                     <input type="text" name="current_page" value={this.state.current_page} placeholder="请输入当前页" onChange={this.changeText.bind(this)} />
@@ -89,6 +94,16 @@ class Test extends React.Component {
                 <ul>
                     {
                         this.props.userListAsync.map((item, index) =>
+                            <li key={item.id}>{index + 1}、{item.name}</li>
+                        )
+                    }
+                </ul>
+                <br />
+                <div>异步Mock接口（Ajax）</div>
+                <div>（共{this.props.userListAsyncMock.length}条记录）</div>
+                <ul>
+                    {
+                        this.props.userListAsyncMock.map((item, index) =>
                             <li key={item.id}>{index + 1}、{item.name}</li>
                         )
                     }

@@ -3,9 +3,10 @@
  */
 import jsonp from 'jsonp';
 import axios from 'axios';
+import { SUCCESS_CODE } from '../redux/action-type';
 
 // http request 拦截器
-axios.timeout = 10000; // 指定请求超时的毫秒数(0 表示无超时时间)
+axios.timeout = 5000; // 指定请求超时的毫秒数(0 表示无超时时间)
 axios.interceptors.request.use(
     config => {
         config.headers = {
@@ -69,7 +70,7 @@ export default class Axios {
                     loading = document.getElementById('ajaxLoading');
                     loading.style.display = 'none';
                 }
-                if (res.code === 0) {
+                if (res.code === SUCCESS_CODE) {
                     // 表示请求成功
                     resolve(res);
                 } else {

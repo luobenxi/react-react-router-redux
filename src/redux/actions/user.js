@@ -2,6 +2,7 @@ import userServices from '../../services/userServices';
 import {
     USER_LIST,
     USER_LIST_ASYNC,
+    USER_LIST_ASYNC_MOCK,
 } from '../action-type';
 
 export const getUserList = data => async (dispatch, getState) => {
@@ -24,4 +25,14 @@ export const getUserListAsync = data => async (dispatch, getState) => {
         type: USER_LIST_ASYNC,
         data: res.data.data
     });
+    return res.data;
+};
+
+export const getUserListAsyncMock = data => async (dispatch, getState) => {
+    let res = await userServices.getUserListMock(data);
+    dispatch({
+        type: USER_LIST_ASYNC_MOCK,
+        data: res.data
+    });
+    return res.data;
 };
