@@ -5,9 +5,10 @@ import MyList from "../components/MyList";
 
 @connect(
     state => ({
-        userList: state.user.userList,
-        userListAsync: state.user.userListAsync,
-        userListAsyncMock: state.user.userListAsyncMock,
+        // userList: state.user.userList,
+        // userListAsync: state.user.userListAsync,
+        // userListAsyncMock: state.user.userListAsyncMock,
+        ...state.user
     }),
     {
         getUserList,

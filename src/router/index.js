@@ -1,10 +1,11 @@
 import React from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom';
-import App from './App';
-import Test from './containers/Test';
-import Home from './containers/Home';
-import About from './containers/About';
-import NotFound from './containers/NotFound';
+import App from '../App';
+import Test from '../containers/Test';
+import Home from '../containers/Home';
+import Mock from '../containers/Mock';
+import About from '../containers/About';
+import NotFound from '../containers/NotFound';
 
 class Router extends React.Component {
     render() {
@@ -16,6 +17,7 @@ class Router extends React.Component {
                             <Route path="/" exact component={Home}/>
                             <Route path="/home" component={Home}/>
                             <Route path="/about" component={About}/>
+                            <Route path="/mock" component={Mock}/>
                             <Route path="/test" component={Test}/>
                             <Route path="/*" component={NotFound}/>
                         </Switch>

@@ -1,9 +1,9 @@
 import React from 'react';
 
-class Home extends React.Component {
+class Mock extends React.Component {
 
     initData() {
-        let url = '/api/v1/Student/getPageList';
+        let url = '/api/user/getPageList';
         fetch(url).then(res => {
             let {ok, status, url, statusText} = res;
             if (ok && status === 200) {
@@ -24,16 +24,16 @@ class Home extends React.Component {
     }
 
     componentDidMount() {
-        // this.initData();
+        this.initData();
     }
 
     render() {
         return (
             <div>
-                Home
+                Mock数据
             </div>
         );
     }
 }
 
-export default Home;
+export default Mock;
