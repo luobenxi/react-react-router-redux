@@ -36,13 +36,13 @@ class Test extends React.Component {
     };
 
     componentDidMount() {
-        let data = this.state.items;
-        this.props.getUserList(data);
+        // let data = this.state.items;
+        // this.props.getUserList(data);
 
-        this.getPageUserList().then(res => {
-            console.log(res);
+        // this.getPageUserList().then(res => {
+            // console.log(res);
             // this.props.getUserListAsyncMock();
-        });
+        // });
     }
 
     getPageUserList() {
@@ -68,47 +68,6 @@ class Test extends React.Component {
                     <div>children</div>
                 </MyList>
                 <p>React全家桶Demo（React+React-Router+Redux）</p>
-                <div>同步</div>
-                <ul>
-                    {
-                        this.props.userList.map((item, index) =>
-                            <li key={item.id}>{index + 1}、{item.name}</li>
-                        )
-                    }
-                </ul>
-                <br />
-                <div>异步本地接口（Ajax）</div>
-                <div>
-                    当前页
-                    <input type="text" name="current_page" value={this.state.current_page} placeholder="请输入当前页" onChange={this.changeText.bind(this)} />
-                </div>
-                <div>
-                    页大小
-                    <input type="text" name="per_page" value={this.state.per_page} placeholder="请输入页大小" onChange={this.changeText.bind(this)} />
-                </div>
-                <div>
-                    关键字
-                    <input type="text" name="name" value={this.state.name} placeholder="请输入姓名" onChange={this.changeText.bind(this)} />
-                </div>
-                <button onClick={this.getPageUserList.bind(this)}>查询</button>
-                <div>（共{this.props.userListAsync.length}条记录）</div>
-                <ul>
-                    {
-                        this.props.userListAsync.map((item, index) =>
-                            <li key={item.id}>{index + 1}、{item.name}</li>
-                        )
-                    }
-                </ul>
-                <br />
-                <div>异步Mock接口（Ajax）</div>
-                <div>（共{this.props.userListAsyncMock.length}条记录）</div>
-                <ul>
-                    {
-                        this.props.userListAsyncMock.map((item, index) =>
-                            <li key={item.id}>{index + 1}、{item.name}</li>
-                        )
-                    }
-                </ul>
             </div>
         );
     }

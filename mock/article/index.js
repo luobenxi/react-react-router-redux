@@ -9,8 +9,8 @@ router.use("/getPageList", function (req, res) {
         'itemList|10': [{
             'id|+1': 1,
             'title': '@ctitle',
-            'status|0-3': 1,
-            'addTime': '2019-10-8 15:20:30'
+            'status|0-2': 1,
+            'addTime': '@datetime'
         }],
         'page': {
             'pageIndex': 1,

@@ -13,6 +13,8 @@ class Nav extends React.Component {
                 <Link to="/mock">mock数据</Link>
                 <span> | </span>
                 <Link to="/test">测试</Link>
+                <span> | </span>
+                <Link to="/frontPage">前端分页</Link>
             </div>
         );
     }

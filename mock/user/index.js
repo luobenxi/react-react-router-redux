@@ -4,19 +4,21 @@ let express = require("express");
 let router = express.Router();
 
 router.use("/getPageList", function (req, res) {
+    let pageSize = req.query.pageSize || 10
+    pageSize = parseInt(pageSize)
     // 调用mock方法模拟数据
     let itemList = Mock.mock({
-        'itemList|10': [{
+        [`itemList|${pageSize}`]: [{
             'id|+1': 1,
             'name': '@cname',
             'sex|1-2': 1,
-            'status': 1,
-            'addTime': '2019-10-8 15:20:30'
+            'status|0-2': 1,
+            'addTime': '@datetime'
         }],
         'page': {
             'pageIndex': 1,
-            'pageSize': 10,
-            'total': 100
+            'pageSize': pageSize,
+            'total': pageSize
         }
     });
     let data = common.AjaxJson(itemList);

@@ -1,6 +1,10 @@
 import React from 'react';
 
 class Mock extends React.Component {
+	
+	state = {
+		itemList: []
+	};
 
     initData() {
         let url = '/api/user/getPageList';
@@ -15,6 +19,9 @@ class Mock extends React.Component {
             let {code, data, msg} = res;
             if (code === 0) {
                 console.log(data);
+				this.setState({
+					itemList: data.itemList
+				});
             } else {
                 console.log(msg);
             }
@@ -30,7 +37,14 @@ class Mock extends React.Component {
     render() {
         return (
             <div>
-                Mock数据
+                <p>Mock数据</p>
+				<ul>
+                    {
+                        this.state.itemList.map((item, index) =>
+                            <li key={item.id}>{index + 1}、{item.name}</li>
+                        )
+                    }
+                </ul>
             </div>
         );
     }
